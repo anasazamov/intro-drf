@@ -7,8 +7,9 @@ from rest_framework.response import Response
 def main(request: Request) -> Response:
     params = request.query_params
 
-    print(params['name'])
-
-    return Response({
-        "name": params['name']
-    })
+    if "a" in params.keys() and "b" in params.keys():
+        return Response({
+            "sum": int(params['a'])+int(params['b'])
+        })
+        
+    return Response({"error":"invalided value or key"})
